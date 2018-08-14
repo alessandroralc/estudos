@@ -1,0 +1,168 @@
+db.createCollection("alunos")
+
+db.alunos.insert({
+    "nome": "Felipe",
+    "data_nascimento": new Date(1994,02,26),
+    "curso": {
+        "nome": "Sistemas de Informação"
+    },
+    "notas": [10.0, 9.0, 4.5],
+    "habilidades": [
+        {
+            "nome": "inglês",
+            "nível": "avançado"
+        },
+        {
+            "nome": "taekwondo",
+            "nível": "básico"
+        }
+    ]
+})
+
+db.alunos.insert({
+    "nome": "Felipe",
+    "data_nascimento": new Date(1995,02,26),
+    "curso": {
+        "nome": "Ciência da Computação"
+    }
+})
+
+
+db.alunos.remove({
+    "_id": ObjectId("5b5082df6d0c56d20899beb3")
+})
+
+db.alunos.find({
+    nome: "Felipe"
+}).pretty()
+
+db.alunos.find({
+    "habilidades.nome": "inglês"
+}).pretty()
+
+db.alunos.find({
+    $or: [
+        {"curso.nome": "Sistemas de Informação"},
+        {"curso.nome": "Engenharia Química"}
+    ]
+}).pretty()
+
+db.alunos.find({
+    $or: [
+        {"curso.nome": "Sistemas de Informação"},
+        {"curso.nome": "Engenharia Química"},
+        {"curso.nome": "Moda"}
+    ],
+    "nome": "Daniela"
+}).pretty()
+
+db.alunos.find({
+    "curso.nome": { $in: ["Sistemas de Informação", "Engenharia Química"] }
+}).pretty()
+
+db.alunos.insert({
+    nome: "Fernando",
+    data_nascimento: new Date(1994, 03, 26),
+    notas: [10, 4.5, 7],
+    curso: {
+        nome: "Sistema de Informação"
+    }
+})
+
+// Se não passar o $set, o objeto encontrado será substituído completamente
+db.alunos.update(
+    {"curso.nome": "Sistema de Informação"},
+    {
+        $set : {
+            "curso.nome": "Sistemas de Informação"
+        }
+    }
+)
+
+// O update por padrão só faz o update na 1ª linha que encontra
+// Passar o objeto com a opção multi: true para habilitar update para várias linhas.
+db.alunos.update(
+    {"curso.nome": "Sistema de Informação"},
+    {
+        $set : {
+            "curso.nome": "Sistemas de Informação"
+        }
+    }, {
+        multi: true
+    }
+)
+
+// Atualizar notas do Felipe
+db.alunos.update(
+    {"_id" : ObjectId("5b50839b6d0c56d20899beb4")},
+    {
+        $set: {
+            "notas": [10.0, 9.0, 4.5, 8.5],
+        }
+    }
+)
+// Similar, sem substituir o array de notas por completo, só adicionando
+db.alunos.update(
+    {"_id" : ObjectId("5b50839b6d0c56d20899beb4")},
+    {
+        $push: {
+            "notas": 8.5
+        }
+    }
+)
+
+// Buscar alunos com notas maiores que 5
+db.alunos.find(
+    {
+        "notas": { $gt: 5}
+    }
+)
+
+// Buscar primeiro aluno com nota maior que 5
+db.alunos.findOne(
+    {
+        "notas": { $gt: 5}
+    }
+)
+
+// Ordenar por nome em ordem crescente(1) ou decrescente(-1)
+db.alunos.find().sort({"nome": 1})
+db.alunos.find().sort({"nome": -1})
+// Limitando registros
+db.alunos.find().sort({"nome": 1}).limit(3)
+
+
+// Adicionando localização para o Felipe
+db.alunos.update(
+    {"_id" : ObjectId("5b50839b6d0c56d20899beb4")},
+    {
+        $set: {
+            localizacao: {
+                endereco: "Rua Vergueiro, 3185",
+                cidade: "São Paulo",
+                pais: "Brasil",
+                coordinates: [-23.588213, -46.632356],
+                type: "Point"
+            }
+        }
+    }
+)
+
+db.alunos.createIndex({
+    localizacao: "2dsphere"
+})
+
+db.alunos.aggregate(
+    [
+        {
+            $geoNear: {
+                near: {
+                    coordinates: [-23.5640265, -46.6527128],
+                    type: "Point"
+                },
+                distanceField: "distancia.calculada",
+                spherical: true
+            }
+        }
+    ]
+)
