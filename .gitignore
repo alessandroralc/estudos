@@ -1,59 +1,59 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 #Arquivos que não devem ser modificados no desenvolvimento
-*/src/environments
+**/src/environments
 
 # compiled output
-*/dist
-*/tmp
-*/out-tsc
-*/bin
-*/lib
-*/node
-*/axe
+**/dist
+**/tmp
+**/out-tsc
+**/bin
+**/lib
+**/node
+**/axe
 
 # dependencies
-*/node_modules
+**/node_modules
 
 # IDEs and editors
-*/.idea
-*/*.iml
-*/.project
-*/.classpath
-*/.c9/
-*/*.launch
-*/.settings/
-*/.sonar/
-*/target/
-*/*.sublime-workspace
+**/.idea
+**/*.iml
+**/.project
+**/.classpath
+**/.c9/
+**/*.launch
+**/.settings/
+**/.sonar/
+**/target/
+**/*.sublime-workspace
 
 # IDE - VSCode
 .vscode
-*/.vscode
-*/.vscode/settings.json
-*/!.vscode/tasks.json
-*/!.vscode/launch.json
-*/!.vscode/extensions.json
+**/.vscode
+**/.vscode/settings.json
+**/!.vscode/tasks.json
+**/!.vscode/launch.json
+**/!.vscode/extensions.json
 
 # misc
-*/.sass-cache
-*/connect.lock
-*/coverage
-*/libpeerconnection.log
-*/npm-debug.log
-*/yarn.lock
-*/package-lock.json
-*/testem.log
-*/typings
-*/lint-report.json
-*/resultado-validacao.json
+**/.sass-cache
+**/connect.lock
+**/coverage
+**/libpeerconnection.log
+**/npm-debug.log
+**/yarn.lock
+**/package-lock.json
+**/testem.log
+**/typings
+**/lint-report.json
+**/resultado-validacao.json
 
 # e2e
-*/e2e/*.js
-*/e2e/*.map
+**/e2e/*.js
+**/e2e/*.map
 
 # System Files
-*/.DS_Store
-*/Thumbs.db
-*/.directory
-*/package-lock.json
+**/.DS_Store
+**/Thumbs.db
+**/.directory
+**/package-lock.json
