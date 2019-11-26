@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Message } from 'primeng/api';
 import { publish, refCount } from 'rxjs/operators';
 
 @Injectable()
