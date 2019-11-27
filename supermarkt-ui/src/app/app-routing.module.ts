@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ErrosComponent } from './erros/erros/erros.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'login', loadChildren: () => import(`./login/login.module`).then(m => m.LoginModule) },
+  { path: 'error', component: ErrosComponent },
+  { path: '**', component: ErrosComponent, data: { error: 404 } }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

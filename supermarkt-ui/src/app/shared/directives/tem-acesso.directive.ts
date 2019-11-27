@@ -1,4 +1,4 @@
-import { Directive, TemplateRef, ViewContainerRef, OnInit } from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, OnInit, Input } from '@angular/core';
 import { Autenticacao } from '../modelos/autenticacao';
 import { AutenticacaoService } from '../services/autenticacao.service';
 
@@ -23,6 +23,11 @@ export class TemAcessoDirective implements OnInit {
       this.currentUser = user;
       this.updateView();
     });
+  }
+
+  @Input() set appTemAcesso(roles: string[]) {
+    this.roles = roles;
+    this.updateView();
   }
 
   private updateView(): void {
