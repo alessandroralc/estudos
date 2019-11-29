@@ -29,7 +29,8 @@ export class SidebarComponent implements OnInit {
         this.itensSupermercado = [{
           label: 'Supermercado',
           items: [
-            {label: 'Pedidos', icon: '', routerLink: '/supermercados/' + this.user.targetId + '/pedidos/pendetes'}
+            {label: 'Pedidos', icon: '', routerLink: '/supermercados/' + this.user.targetId + '/pedidos/pendentes'},
+            {label: 'Estoque', icon: '', routerLink: '/supermercados/' + this.user.targetId + '/estoque'}
           ]
         }];
       }
